@@ -1,0 +1,187 @@
+header {
+  background-color: #f0f0f0;
+  padding: 10px 0;
+  margin-bottom: 80px;
+}
+
+header img {
+  height: 70px;
+  width: auto;
+  display: block;
+  margin-left: 30px;
+  margin-right: auto;
+}
+
+h1 {
+color: #303F4E;
+font-size: 30px;
+text-align: center;
+
+
+}
+
+h2 {
+color: #303F4E;
+font-size: 20px;
+text-align: center;
+margin: 30px;
+}
+
+button {
+background-color: #0F1F40;
+color: white;
+border-radius: 20px;
+padding: 12px 24px;
+border: none;
+cursor: pointer;
+margin: 30px;
+font-weight: bold;
+}
+
+
+button:hover {
+  background-color: #d1dbe7;
+  transition: 0.3s ease;
+}
+
+
+#button-container {
+  text-align: center;
+}
+
+/* Remove default page spacing so images can reach the edges */
+body {
+  margin: 0;
+  padding: 0;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+/* Estilos para el contenedor de la imagen */
+.imagen-banner {
+  width: 100%; /* El contenedor ocupa todo el ancho */
+  height: 300px; /* Altura deseada en pantallas grandes (ajusta este valor) */
+  overflow: hidden; /* Muy importante: recorta cualquier parte de la imagen que exceda este contenedor */
+}
+
+/* Estilos para la imagen dentro del contenedor */
+.imagen-banner img {
+  width: 100%; /* La imagen ocupa todo el ancho del contenedor */
+  height: 100%; /* La imagen ocupa toda la altura del contenedor */
+  object-fit: cover; /* ¡CLAVE! Escala la imagen para cubrir el contenedor, recortando las partes extra. */
+  object-position: center; 
+  display: block; 
+  filter: brightness(50%);
+}
+
+
+/* Conteneder de información de la consulta médica*/
+#text-container {
+  padding: 15px;
+  max-width: 800px;
+  margin: 10px auto;
+  color: #0F1F40;
+}
+
+/* Alinea solo el h2 dentro del contenedor hacia la derecha */
+#text-container h2 {
+  text-align: left;
+  font-style: bold;
+  text-decoration: underline;
+  font-style: bold;
+    font-size: 24px;
+    color: #0F1F40;
+}
+
+#text-container li {
+padding: 5px;
+font-size: 18px;
+}
+
+#contact-container {
+  color: #ffffff;
+  background-color: #0F1F40;
+  font-size: 70px;
+  width: 70%;
+  max-width: 500px;
+  align-items: center;
+  text-align: center;
+  margin: 25px auto;
+  border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+#contact-container h2 {
+  font-style: bold;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+#contact-container a {
+  font-size: 20px;
+  color: #ffffff;
+  padding: 15px;
+  }
+
+  #contact-container a:hover {
+    color: #5a636d;
+    transition: 0.3s ease;
+  }
+
+
+#line-separator {
+  border-top: 8px solid #0F1F40;
+  width: 50%;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+/* Contenedor de la dirección y el mapa */
+.direccion-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;      /* Ancho máximo para el contenedor */
+  margin: 40px auto;
+  padding: 20px;
+  color: #0F1F40;
+}
+
+.direccion-container h2{
+    font-size: 24px;
+  color: #0F1F40;
+}
+
+.direccion-container p{
+    font-size: 18px;
+    text-align: center;
+}
+.mapa-responsive {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 75%;
+}
+
+/*Mapa iframe  */
+.mapa-responsive iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+footer {
+  background-color: #0F1F40;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 40px;
+  font-size: 14px;
+  color: #ffffff;
+}
