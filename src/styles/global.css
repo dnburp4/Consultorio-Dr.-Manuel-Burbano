@@ -1,16 +1,96 @@
 header {
-  background-color: #f0f0f0;
-  padding: 10px 0;
-  margin-bottom: 80px;
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+  background-color: rgba(250, 252, 255, 0.96);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid #dfe7f0;
+  box-shadow: 0 2px 10px rgba(20, 41, 84, 0.05);
+  padding: 0;
+  margin-bottom: 52px;
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.header-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 18px;
+  transition: padding 0.25s ease, gap 0.25s ease;
+}
+
+.header-logo-link {
+  display: block;
+  width: fit-content;
+  margin: 0;
+  flex-shrink: 0;
 }
 
 header img {
-  height: 70px;
+  height: 56px;
   width: auto;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: center;
+  margin: 0;
+  transition: height 0.25s ease;
+}
+
+.header-nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-top: 0;
+  transition: gap 0.25s ease;
+}
+
+.header-nav-link {
+  display: inline-block;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid transparent;
+  color: #3b5168;
+  text-decoration: none;
+  border-radius: 0;
+  padding: 6px 4px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: color 0.3s ease, border-bottom-color 0.3s ease, padding 0.25s ease, letter-spacing 0.25s ease;
+}
+
+.header-nav-link:hover {
+  color: #163654;
+  border-bottom-color: #8ea7c2;
+}
+
+html.header-scrolled header {
+  background-color: rgba(250, 252, 255, 0.9);
+  box-shadow: 0 1px 8px rgba(20, 41, 84, 0.08);
+}
+
+html.header-scrolled .header-inner {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  gap: 12px;
+}
+
+html.header-scrolled header img {
+  height: 48px;
+}
+
+html.header-scrolled .header-nav {
+  gap: 8px;
+}
+
+html.header-scrolled .header-nav-link {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  letter-spacing: 0.06em;
 }
 
 h1 {
@@ -139,6 +219,11 @@ font-size: 18px;
   margin-right: auto;
 }
 
+#contact-container,
+#direccion {
+  scroll-margin-top: 104px;
+}
+
 
 
 /* Contenedor de la dirección y el mapa */
@@ -251,6 +336,38 @@ font-size: 18px;
 }
 
 @media (max-width: 640px) {
+  header {
+    top: 0;
+    padding: 0;
+  }
+
+  .header-inner {
+    padding: 8px 10px;
+    gap: 8px;
+  }
+
+  header img {
+    height: 44px;
+  }
+
+  .header-nav {
+    flex-wrap: nowrap;
+    gap: 6px;
+  }
+
+  .header-nav-link {
+    font-size: 11px;
+    padding: 6px 8px;
+  }
+
+  html.header-scrolled .header-inner {
+    padding: 6px 10px;
+  }
+
+  html.header-scrolled header img {
+    height: 40px;
+  }
+
   .footer-legal-nav {
     flex-direction: column;
   }

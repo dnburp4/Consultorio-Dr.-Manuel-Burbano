@@ -1,5 +1,22 @@
-  <header>
-<a href="/">
-    <img src="/images/SVG_Dr-Burbano_Blue.svg" alt="Logotipo del Consultorio Dr. Manuel Burbano" />
-</a>
-  </header>
+<header>
+  <div class="header-inner">
+    <a href="/" class="header-logo-link" aria-label="Ir al inicio">
+      <img src="/images/SVG_Dr-Burbano_Blue.svg" alt="Logotipo del Consultorio Dr. Manuel Burbano" />
+    </a>
+    <nav class="header-nav" aria-label="Navegación de secciones">
+      <a class="header-nav-link" href="/#contact-container">Contacto</a>
+      <a class="header-nav-link" href="/#direccion">Dirección</a>
+    </nav>
+  </div>
+</header>
+
+<script is:inline>
+  const root = document.documentElement;
+
+  const updateHeaderState = () => {
+    root.classList.toggle("header-scrolled", window.scrollY > 24);
+  };
+
+  updateHeaderState();
+  window.addEventListener("scroll", updateHeaderState, { passive: true });
+</script>
