@@ -1,14 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import FooterLegal from "../components/FooterLegal.astro";
+import Header from "../components/Header.astro";
 ---
 
 <BaseLayout
   title="Consultorio Dr. Manuel Burbano | Neuropediatría y EEG"
   description="Consultorio del Dr. Manuel Burbano, especialista en neuropediatría y electroencefalografía. Atención profesional a niños y adolescentes con trastornos neurológicos, del desarrollo y del sueño."
 >
-  <header>
-    <img src="/images/SVG_Dr-Burbano_Blue.svg" alt="" />
-  </header>
+  <Header />
 
   <h1>Dr. Manuel Burbano</h1>
   <h2>Especialista en Neuropediatría-Electroencefalografía</h2>
@@ -64,7 +64,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       Teléfono: 2378860
     </a>
 
-    <a href="https://wa.me/593999456700" target="_blank">
+    <a href="https://wa.me/593999456700" target="_blank" rel="noopener noreferrer">
       <i class="fa-brands fa-whatsapp"></i>WhatsApp</a
     >
   </div>
@@ -89,7 +89,5 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </div>
 
-  <footer>
-    <p>&copy; 2024 Consultorio Dr. Manuel Burbano. Todos los derechos reservados.</p>
-  </footer>
+  <FooterLegal />
 </BaseLayout>
