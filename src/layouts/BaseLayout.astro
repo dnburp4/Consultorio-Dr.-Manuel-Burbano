@@ -32,5 +32,20 @@ const {
   <body>
     <slot />
     <CookieConsent />
+
+    <script is:inline>
+      // Seguimiento de conversiones por delegación de eventos.
+      // Cualquier elemento con data-ga-event envía un evento a GA4 al hacer clic.
+      // Solo se dispara si GA está cargado (window.gtag existe = hubo consentimiento).
+      document.addEventListener("click", function (e) {
+        const el = e.target.closest("[data-ga-event]");
+        if (!el) return;
+        if (typeof window.gtag !== "function") return;
+
+        const params = {};
+        if (el.dataset.gaMethod) params.method = el.dataset.gaMethod;
+        window.gtag("event", el.dataset.gaEvent, params);
+      });
+    </script>
   </body>
 </html>
