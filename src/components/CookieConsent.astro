@@ -1,0 +1,170 @@
+---
+// Banner de consentimiento + carga condicional de Google Analytics 4.
+// GA4 solo se carga después de que la persona acepta (cumplimiento LOPDP - Ecuador).
+const gaId = import.meta.env.PUBLIC_GA_ID;
+---
+
+{gaId && (
+  <div id="cookie-consent" class="cookie-consent" role="dialog" aria-live="polite" aria-label="Aviso de cookies" hidden>
+    <p class="cookie-consent-text">
+      Usamos cookies de Google Analytics para medir el tráfico del sitio y mejorar la experiencia.
+      Solo se activan si las aceptas. Consulta nuestra
+      <a href="/cookies">Política de cookies</a>.
+    </p>
+    <div class="cookie-consent-actions">
+      <button type="button" id="cookie-consent-reject" class="cookie-consent-button cookie-consent-button--ghost">
+        Rechazar
+      </button>
+      <button type="button" id="cookie-consent-accept" class="cookie-consent-button cookie-consent-button--solid">
+        Aceptar
+      </button>
+    </div>
+  </div>
+
+  <script is:inline define:vars={{ gaId }}>
+    (function () {
+      const STORAGE_KEY = "ga-consent";
+      const banner = document.getElementById("cookie-consent");
+      if (!banner) return;
+
+      function loadGA(id) {
+        if (window.__gaLoaded) return;
+        window.__gaLoaded = true;
+
+        const s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=" + id;
+        document.head.appendChild(s);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { window.dataLayer.push(arguments); }
+        window.gtag = gtag;
+        gtag("js", new Date());
+        gtag("config", id, { anonymize_ip: true });
+      }
+
+      function hideBanner() {
+        banner.hidden = true;
+      }
+
+      const consent = localStorage.getItem(STORAGE_KEY);
+
+      if (consent === "granted") {
+        loadGA(gaId);
+        hideBanner();
+        return;
+      }
+      if (consent === "denied") {
+        hideBanner();
+        return;
+      }
+
+      // Sin decisión previa: mostrar el banner.
+      banner.hidden = false;
+
+      const acceptBtn = document.getElementById("cookie-consent-accept");
+      const rejectBtn = document.getElementById("cookie-consent-reject");
+
+      acceptBtn?.addEventListener("click", function () {
+        localStorage.setItem(STORAGE_KEY, "granted");
+        hideBanner();
+        loadGA(gaId);
+      });
+
+      rejectBtn?.addEventListener("click", function () {
+        localStorage.setItem(STORAGE_KEY, "denied");
+        hideBanner();
+      });
+    })();
+  </script>
+
+  <style>
+    .cookie-consent {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      z-index: 1200;
+      width: min(680px, calc(100% - 32px));
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 16px 20px;
+      background-color: rgba(250, 252, 255, 0.98);
+      border: 1px solid #dfe7f0;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(20, 41, 84, 0.18);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .cookie-consent[hidden] {
+      display: none;
+    }
+
+    .cookie-consent-text {
+      margin: 0;
+      flex: 1 1 280px;
+      color: #3b5168;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .cookie-consent-text a {
+      color: #142954;
+      text-decoration: underline;
+    }
+
+    .cookie-consent-actions {
+      display: flex;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .cookie-consent-button {
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .cookie-consent-button--solid {
+      background-color: #142954;
+      color: #ffffff;
+      border: 1px solid #142954;
+    }
+
+    .cookie-consent-button--solid:hover {
+      background-color: #1d3a73;
+      border-color: #1d3a73;
+    }
+
+    .cookie-consent-button--ghost {
+      background-color: transparent;
+      color: #3b5168;
+      border: 1px solid #c5d2e2;
+    }
+
+    .cookie-consent-button--ghost:hover {
+      border-color: #3b5168;
+      color: #142954;
+    }
+
+    @media (max-width: 520px) {
+      .cookie-consent {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: left;
+      }
+
+      .cookie-consent-actions {
+        justify-content: flex-end;
+      }
+    }
+  </style>
+)}
