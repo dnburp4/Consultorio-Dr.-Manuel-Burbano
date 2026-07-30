@@ -157,13 +157,39 @@ const gaId = import.meta.env.PUBLIC_GA_ID;
 
     @media (max-width: 520px) {
       .cookie-consent {
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transform: none;
+        width: 100%;
+        max-width: none;
         flex-direction: column;
         align-items: stretch;
+        justify-content: flex-start;
         text-align: left;
+        gap: 8px;
+        padding: 12px 14px max(12px, env(safe-area-inset-bottom));
+        border-radius: 12px 12px 0 0;
+        border-width: 1px 0 0 0;
+        box-shadow: 0 -4px 16px rgba(20, 41, 84, 0.14);
+      }
+
+      .cookie-consent-text {
+        /* En columna, el flex-basis de 280px se aplicaría a la ALTURA y estiraría
+           el banner. Se anula para que el párrafo mida solo su contenido. */
+        flex: 0 0 auto;
+        font-size: 12px;
+        line-height: 1.4;
       }
 
       .cookie-consent-actions {
         justify-content: flex-end;
+        gap: 8px;
+      }
+
+      .cookie-consent-button {
+        padding: 7px 14px;
+        font-size: 12px;
       }
     }
   </style>
